@@ -52,7 +52,7 @@ export default function FalImageBreak() {
   return (
     <section
       className="relative overflow-hidden"
-      style={{ height: "65vh", minHeight: 460 }}
+      style={{ height: "60vh", minHeight: 420 }}
       aria-label="Yoga Philosophie"
     >
       {/* Image with overlay */}
@@ -89,18 +89,25 @@ export default function FalImageBreak() {
 
       {!loading && (
         <>
-          {/* Gradient overlay */}
+          {/* Gradient overlay — stronger on mobile */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to right, rgba(10,14,10,0.85) 0%, rgba(10,14,10,0.5) 50%, rgba(10,14,10,0.2) 100%)",
+                "linear-gradient(to bottom, rgba(10,14,10,0.6) 0%, rgba(10,14,10,0.75) 50%, rgba(10,14,10,0.9) 100%)",
+            }}
+          />
+          <div
+            className="absolute inset-0 hidden sm:block"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(10,14,10,0.85) 0%, rgba(10,14,10,0.4) 55%, rgba(10,14,10,0.1) 100%)",
             }}
           />
 
-          {/* Content — left aligned */}
-          <div className="relative z-10 h-full flex items-center px-6 lg:px-20">
-            <div className="max-w-[580px]">
+          {/* Content — centered on mobile, left on desktop */}
+          <div className="relative z-10 h-full flex items-end sm:items-center px-4 sm:px-8 lg:px-20 pb-10 sm:pb-0">
+            <div className="max-w-[580px] w-full">
               {generated && (
                 <motion.div
                   initial={{ opacity: 0, x: -10 }}

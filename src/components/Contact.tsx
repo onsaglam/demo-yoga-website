@@ -34,11 +34,11 @@ export default function Contact() {
     <section
       id="kontakt"
       aria-label="Kontakt"
-      className="bg-[var(--cream)] py-[96px]"
+      className="bg-[var(--cream)] py-[72px] lg:py-[96px]"
     >
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
-        <AnimatedSection className="text-center mb-[72px]" stagger={0.1}>
+        <AnimatedSection className="text-center mb-[48px] lg:mb-[72px]" stagger={0.1}>
           <motion.span
             variants={fadeUp}
             className="block mb-5 font-[family-name:var(--font-body)] text-[11px] tracking-[0.35em] text-[var(--sage)] uppercase"
@@ -55,7 +55,7 @@ export default function Contact() {
           </motion.h2>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20">
 
           {/* Form */}
           <motion.div
@@ -76,7 +76,7 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="sr-only">Vor- & Nachname</label>
                     <input id="name" className="form-input" type="text" placeholder="Vor- & Nachname" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />

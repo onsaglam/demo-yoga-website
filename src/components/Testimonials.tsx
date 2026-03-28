@@ -32,9 +32,9 @@ export default function Testimonials() {
   return (
     <section
       aria-label="Kundenstimmen"
-      className="bg-[var(--surface)] py-[120px] overflow-hidden"
+      className="bg-[var(--surface)] py-[80px] lg:py-[120px] overflow-hidden"
     >
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-12 mb-16">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-12 mb-10 lg:mb-16">
         <AnimatedSection stagger={0.1}>
           <motion.span
             variants={fadeUp}

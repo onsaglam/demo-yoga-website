@@ -67,7 +67,7 @@ export default function Navbar() {
 
         <motion.div
           style={{ height, borderBottom: `1px solid rgba(138,158,126,${borderOpacity})` }}
-          className="max-w-[1280px] mx-auto px-6 lg:px-14 flex items-center justify-between"
+          className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-14 flex items-center justify-between"
         >
           {/* Logo */}
           <a href="#" className="flex items-center gap-3 group" aria-label="Prana Studio Bremen – Startseite">
@@ -118,12 +118,12 @@ export default function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden text-[var(--cream)] p-2"
+            className="md:hidden text-[var(--cream)] p-3 -mr-1 rounded-[var(--radius-sm)] transition-colors duration-200 hover:bg-white/5 active:bg-white/10"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
             aria-expanded={menuOpen}
           >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </motion.div>
       </motion.nav>

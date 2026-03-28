@@ -8,8 +8,8 @@ import { instructors } from "@/data/instructors";
 
 export default function Instructors() {
   return (
-    <section id="trainer" aria-label="Trainer" className="py-[120px]" style={{ background: "var(--surface)" }}>
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-12">
+    <section id="trainer" aria-label="Trainer" className="py-[80px] lg:py-[120px]" style={{ background: "var(--surface)" }}>
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-12">
 
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
           <AnimatedSection stagger={0.1}>

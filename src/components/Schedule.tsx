@@ -15,9 +15,9 @@ export default function Schedule() {
     <section
       id="stundenplan"
       aria-label="Stundenplan"
-      className="bg-[var(--cream)] py-[96px]"
+      className="bg-[var(--cream)] py-[72px] lg:py-[96px]"
     >
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
         <AnimatedSection className="text-center mb-16" stagger={0.1}>
           <motion.span
@@ -88,17 +88,17 @@ export default function Schedule() {
               key={i}
               role="row"
               className={`
-                grid grid-cols-[80px_1fr_auto] md:grid-cols-[100px_1fr_160px_100px_100px_140px]
-                gap-4 px-6 py-5 items-center
+                grid grid-cols-[72px_1fr_auto] md:grid-cols-[100px_1fr_160px_100px_100px_140px]
+                gap-3 md:gap-4 px-4 sm:px-6 py-4 sm:py-5 items-center
                 border-t border-[var(--forest)]/8
                 ${i % 2 === 0 ? "bg-[var(--forest)]/3" : ""}
                 ${entry.full ? "opacity-50" : "hover:bg-[var(--sage)]/6 transition-colors duration-200"}
               `}
             >
-              <span className="font-[family-name:var(--font-display)] text-[22px] font-light text-[var(--gold)]">
+              <span className="font-[family-name:var(--font-display)] text-[17px] sm:text-[22px] font-light text-[var(--gold)]">
                 {entry.time}
               </span>
-              <span className="font-[family-name:var(--font-display)] text-[20px] font-[400] text-[var(--forest)]">
+              <span className="font-[family-name:var(--font-display)] text-[16px] sm:text-[20px] font-[400] text-[var(--forest)] leading-tight">
                 {entry.course}
               </span>
               <span className="hidden md:block font-[family-name:var(--font-body)] text-[13px] text-[var(--muted)]">

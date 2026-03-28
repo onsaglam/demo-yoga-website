@@ -7,20 +7,20 @@ import { fadeUp, fadeLeft, fadeRight } from "@/lib/motion";
 
 export default function About() {
   return (
-    <section id="ueber-uns" aria-label="Über uns" className="py-[120px] overflow-hidden" style={{ background: "linear-gradient(160deg, var(--cream) 0%, #ede8df 100%)" }}>
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+    <section id="ueber-uns" aria-label="Über uns" className="py-[80px] lg:py-[120px] overflow-hidden" style={{ background: "linear-gradient(160deg, var(--cream) 0%, #ede8df 100%)" }}>
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
           {/* Left: image composition */}
           <motion.div
             variants={fadeLeft}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            className="relative h-[600px]"
+            viewport={{ once: true, margin: "-60px" }}
+            className="relative h-[280px] sm:h-[420px] lg:h-[600px]"
           >
             {/* Main large image */}
-            <div className="absolute top-0 left-0 w-[75%] h-[78%] overflow-hidden rounded-[var(--radius-lg)]" style={{ boxShadow: "0 32px 80px rgba(26,31,26,0.18)" }}>
+            <div className="absolute top-0 left-0 w-[75%] h-[100%] lg:h-[78%] overflow-hidden rounded-[var(--radius-lg)]" style={{ boxShadow: "0 32px 80px rgba(26,31,26,0.18)" }}>
               <Image
                 src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=900&q=90&fit=crop&crop=center"
                 alt="Prana Studio Bremen – heller Yogaraum mit Holzboden und natürlichem Licht"
@@ -29,8 +29,8 @@ export default function About() {
               <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom right, transparent 60%, rgba(26,31,26,0.08))" }} />
             </div>
 
-            {/* Secondary image */}
-            <div className="absolute bottom-0 right-0 w-[55%] h-[48%] overflow-hidden rounded-[var(--radius-lg)] rotate-[1.5deg]" style={{ boxShadow: "0 20px 60px rgba(26,31,26,0.22)" }}>
+            {/* Secondary image — hidden on mobile */}
+            <div className="hidden sm:block absolute bottom-0 right-0 w-[55%] h-[48%] overflow-hidden rounded-[var(--radius-lg)] rotate-[1.5deg]" style={{ boxShadow: "0 20px 60px rgba(26,31,26,0.22)" }}>
               <Image
                 src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=600&q=90&fit=crop&crop=center"
                 alt="Yoga Morgenpraxis bei Sonnenaufgang"
@@ -39,13 +39,13 @@ export default function About() {
             </div>
 
             {/* Floating quote card */}
-            <div className="absolute -bottom-4 left-4 z-10 rounded-[var(--radius-md)] px-6 py-5" style={{ background: "var(--forest)", boxShadow: "0 16px 48px rgba(0,0,0,0.35)", minWidth: 200 }}>
-              <div className="font-[family-name:var(--font-display)] text-[42px] font-light leading-none" style={{ color: "var(--gold)" }}>500+</div>
-              <div className="font-[family-name:var(--font-body)] text-[10px] tracking-[0.25em] uppercase mt-1" style={{ color: "var(--sage)" }}>Zufriedene Mitglieder</div>
+            <div className="absolute bottom-3 sm:-bottom-4 right-2 sm:left-4 sm:right-auto z-10 rounded-[var(--radius-md)] px-4 py-3 sm:px-6 sm:py-5" style={{ background: "var(--forest)", boxShadow: "0 16px 48px rgba(0,0,0,0.35)", minWidth: 160 }}>
+              <div className="font-[family-name:var(--font-display)] text-[32px] sm:text-[42px] font-light leading-none" style={{ color: "var(--gold)" }}>500+</div>
+              <div className="font-[family-name:var(--font-body)] text-[9px] sm:text-[10px] tracking-[0.25em] uppercase mt-1" style={{ color: "var(--sage)" }}>Zufriedene Mitglieder</div>
             </div>
 
-            {/* Decorative dot grid */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 opacity-25" aria-hidden="true">
+            {/* Decorative dot grid — hidden on mobile */}
+            <div className="hidden lg:block absolute -top-6 -right-6 w-24 h-24 opacity-25" aria-hidden="true">
               <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {[0,1,2,3].map(row => [0,1,2,3].map(col => (
                   <circle key={`${row}-${col}`} cx={col*28+8} cy={row*28+8} r="2.5" fill="var(--sage)" />

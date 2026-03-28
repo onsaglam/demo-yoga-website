@@ -18,12 +18,12 @@ export default function Classes() {
     <section
       id="kurse"
       aria-label="Kurse"
-      className="py-[112px] overflow-hidden"
+      className="py-[80px] lg:py-[112px] overflow-hidden"
       style={{ background: "linear-gradient(180deg, var(--forest) 0%, #161b16 100%)" }}
     >
-      <div className="max-w-[1340px] mx-auto px-6 lg:px-12">
+      <div className="max-w-[1340px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
-        <AnimatedSection className="text-center mb-[80px]" stagger={0.1}>
+        <AnimatedSection className="text-center mb-[56px] lg:mb-[80px]" stagger={0.1}>
           <motion.span
             variants={fadeUp}
             className="block mb-5 font-[family-name:var(--font-body)] text-[11px] tracking-[0.35em] text-[var(--sage)] uppercase"
@@ -57,7 +57,7 @@ export default function Classes() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.8, delay: (i % 3) * 0.12, ease: EASE_OUT_QUINT }}
               whileHover="hover"
-              className="relative h-[500px] overflow-hidden cursor-pointer group"
+              className="relative h-[380px] sm:h-[440px] lg:h-[500px] overflow-hidden cursor-pointer group"
               style={{ borderRadius: "12px" }}
             >
               {/* Image */}
@@ -158,12 +158,12 @@ export default function Classes() {
                 </div>
               </motion.div>
 
-              {/* Default label (visible by default, hides on hover) */}
+              {/* Default label (visible by default, hides on hover on desktop) */}
               <motion.div
                 variants={{ rest: { opacity: 1, y: 0 }, hover: { opacity: 0, y: 8 } }}
                 initial="rest"
                 transition={{ duration: 0.3 }}
-                className="absolute bottom-0 left-0 right-0 px-7 pb-8 pt-24 bg-gradient-to-t from-[rgba(10,14,10,0.95)] to-transparent"
+                className="absolute bottom-0 left-0 right-0 px-5 sm:px-7 pb-6 sm:pb-8 pt-20 bg-gradient-to-t from-[rgba(10,14,10,0.95)] to-transparent"
               >
                 <p
                   className="font-[family-name:var(--font-body)] text-[10px] tracking-[0.35em] uppercase mb-2"
@@ -171,9 +171,13 @@ export default function Classes() {
                 >
                   {cls.type}
                 </p>
-                <h3 className="font-[family-name:var(--font-display)] text-[28px] font-light text-[var(--cream)] leading-tight">
+                <h3 className="font-[family-name:var(--font-display)] text-[24px] sm:text-[28px] font-light text-[var(--cream)] leading-tight">
                   {cls.name}
                 </h3>
+                {/* Short description visible on mobile always */}
+                <p className="sm:hidden font-[family-name:var(--font-body)] text-[12px] font-light leading-[1.6] mt-2" style={{ color: "rgba(245,240,232,0.6)" }}>
+                  {cls.duration} Min · {cls.level}
+                </p>
               </motion.div>
             </motion.div>
           ))}

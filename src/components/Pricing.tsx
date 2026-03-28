@@ -49,8 +49,8 @@ const plans: Plan[] = [
 
 export default function Pricing() {
   return (
-    <section id="preise" aria-label="Preise" className="py-[120px]" style={{ background: "var(--forest)" }}>
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
+    <section id="preise" aria-label="Preise" className="py-[80px] lg:py-[120px]" style={{ background: "var(--forest)" }}>
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-12">
 
         <AnimatedSection className="text-center mb-[72px]" stagger={0.1}>
           <motion.span variants={fadeUp} className="flex items-center justify-center gap-3 mb-6">

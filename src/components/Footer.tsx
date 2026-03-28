@@ -5,7 +5,7 @@ export default function Footer() {
 
   return (
     <footer style={{ background: "#0c110c", borderTop: "1px solid rgba(138,158,126,0.1)" }}>
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-12 pt-20 pb-10">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-12 pt-14 sm:pt-20 pb-8 sm:pb-10">
         {/* Top: logo + nav columns */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2.5fr_1fr_1fr_1fr] gap-14 mb-16">
 

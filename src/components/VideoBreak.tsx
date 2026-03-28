@@ -56,7 +56,7 @@ export default function VideoBreak() {
       />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex items-center justify-center px-6">
+      <div className="relative z-10 h-full flex items-center justify-center px-5 sm:px-8">
         <div className="text-center max-w-[800px] mx-auto">
           <motion.div
             initial={{ opacity: 0, scaleX: 0 }}
@@ -83,10 +83,10 @@ export default function VideoBreak() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.9, delay: 0.35 }}
-            className="font-[family-name:var(--font-display)] font-light italic leading-[1.25] text-[var(--cream)]"
-            style={{ fontSize: "clamp(32px, 5vw, 60px)" }}
+            className="font-[family-name:var(--font-display)] font-light italic leading-[1.3] text-[var(--cream)]"
+            style={{ fontSize: "clamp(24px, 5vw, 60px)" }}
           >
-            „Yoga ist nicht das, was du tust –<br />
+            „Yoga ist nicht das, was du tust –{" "}
             <em style={{ color: "var(--sage)" }}>es ist das, was du wirst."</em>
           </motion.blockquote>
 
