@@ -25,7 +25,7 @@ function LotusIcon() {
 }
 
 export default function Navbar() {
-  const { scrollY } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const background = useTransform(
@@ -37,6 +37,7 @@ export default function Navbar() {
   const height = useTransform(scrollY, [0, 80], ["84px", "66px"]);
   const borderOpacity = useTransform(scrollY, [0, 80], [0, 0.2]);
   const bottomShadowOpacity = useTransform(scrollY, [0, 80], [0, 1]);
+  const progressScaleX = scrollYProgress;
 
   return (
     <>
@@ -46,6 +47,21 @@ export default function Navbar() {
       >
         Zum Hauptinhalt springen
       </a>
+
+      {/* Scroll progress bar */}
+      <motion.div
+        style={{
+          scaleX: progressScaleX,
+          transformOrigin: "left",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "2px",
+          background: "linear-gradient(90deg, var(--sage), var(--gold))",
+          zIndex: 600,
+        }}
+      />
 
       <motion.nav
         aria-label="Hauptnavigation"
@@ -132,39 +148,82 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: EASE_IN_OUT }}
-            className="fixed inset-0 z-[400] flex flex-col items-center justify-center gap-10 bg-[rgba(20,25,20,0.99)]"
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 0.35, ease: EASE_IN_OUT }}
+            className="fixed inset-0 z-[400] flex flex-col"
+            style={{ background: "rgba(13,17,13,0.98)", backdropFilter: "blur(12px)" }}
           >
-            <div className="absolute top-6 left-1/2 -translate-x-1/2 opacity-20">
-              <LotusIcon />
-            </div>
-            {links.map((link, i) => (
-              <motion.a
-                key={link.href}
-                href={link.href}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.07, duration: 0.4 }}
-                onClick={() => setMenuOpen(false)}
-                className="font-[family-name:var(--font-display)] text-[40px] font-light text-[var(--cream)] no-underline tracking-[0.05em] hover:text-[var(--gold)] transition-colors duration-200"
-              >
-                {link.label}
-              </motion.a>
-            ))}
-            <motion.a
-              href="#kontakt"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: links.length * 0.07 + 0.1, duration: 0.4 }}
-              onClick={() => setMenuOpen(false)}
-              className="font-[family-name:var(--font-body)] text-[11px] tracking-[0.2em] uppercase px-10 py-4 rounded-[var(--radius-md)] mt-4 no-underline font-semibold"
-              style={{ background: "var(--gold)", color: "var(--forest)" }}
+            {/* Overlay header */}
+            <div
+              className="flex items-center justify-between px-5 shrink-0"
+              style={{ height: "66px", borderBottom: "1px solid rgba(138,158,126,0.12)" }}
             >
-              Gratis Probestunde
-            </motion.a>
+              <a
+                href="#"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-3"
+                aria-label="Startseite"
+              >
+                <LotusIcon />
+                <div className="flex flex-col leading-none">
+                  <span className="font-[family-name:var(--font-display)] text-[26px] font-semibold tracking-[0.18em] text-[var(--cream)] uppercase">
+                    Prana
+                  </span>
+                  <span className="font-[family-name:var(--font-body)] text-[8px] font-light tracking-[0.45em] text-[var(--sage)] uppercase -mt-0.5">
+                    studio
+                  </span>
+                </div>
+              </a>
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="w-10 h-10 flex items-center justify-center rounded-full text-[var(--cream)] transition-colors duration-200 hover:bg-white/5"
+                style={{ border: "1px solid rgba(138,158,126,0.2)" }}
+                aria-label="Menü schließen"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Nav links */}
+            <nav className="flex-1 flex flex-col justify-center px-6">
+              {links.map((link, i) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  initial={{ opacity: 0, x: 24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.06, duration: 0.4 }}
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center justify-between py-4 no-underline group"
+                  style={{ borderBottom: "1px solid rgba(138,158,126,0.08)" }}
+                >
+                  <span className="font-[family-name:var(--font-display)] text-[38px] font-light text-[var(--cream)] tracking-[0.03em] group-hover:text-[var(--gold)] transition-colors duration-200">
+                    {link.label}
+                  </span>
+                  <span className="font-[family-name:var(--font-body)] text-[11px] tracking-[0.25em] opacity-30" style={{ color: "var(--sage)" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </motion.a>
+              ))}
+            </nav>
+
+            {/* CTA */}
+            <div className="px-6 pb-10 pt-4 shrink-0">
+              <motion.a
+                href="#kontakt"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: links.length * 0.06 + 0.1, duration: 0.4 }}
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-center gap-3 font-[family-name:var(--font-body)] text-[11px] tracking-[0.2em] uppercase py-4 rounded-[var(--radius-md)] no-underline font-semibold w-full"
+                style={{ background: "var(--gold)", color: "var(--forest)" }}
+              >
+                Gratis Probestunde
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </motion.a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

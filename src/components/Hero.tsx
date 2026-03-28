@@ -18,11 +18,11 @@ function HeroContent() {
     >
       {/* Divider */}
       <div
-        className='w-20 h-px mb-12'
+        className='w-20 h-px mb-8 sm:mb-12'
         style={{ background: 'linear-gradient(90deg, var(--sage), transparent)' }}
       />
 
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-16 items-start'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start'>
         {/* Left */}
         <div>
           <p
@@ -83,13 +83,13 @@ function HeroContent() {
             ].map((s) => (
               <div
                 key={s.l}
-                className='flex flex-col items-center justify-center py-6'
+                className='flex flex-col items-center justify-center py-4 sm:py-6'
                 style={{ background: 'rgba(36,41,36,0.6)' }}
               >
                 <span
                   style={{
                     fontFamily: 'var(--font-display)',
-                    fontSize: 36,
+                    fontSize: 'clamp(22px, 5vw, 36px)',
                     fontWeight: 300,
                     color: 'var(--cream)',
                     lineHeight: 1,
@@ -114,10 +114,10 @@ function HeroContent() {
           </div>
 
           {/* CTA buttons */}
-          <div className='flex gap-3 flex-wrap'>
+          <div className='flex flex-col sm:flex-row gap-3'>
             <a
               href='#kontakt'
-              className='flex-1 text-center font-medium transition-all duration-300 rounded-[var(--radius-md)]'
+              className='sm:flex-1 text-center font-medium transition-all duration-300 rounded-[var(--radius-md)]'
               style={{
                 fontFamily: 'var(--font-body)',
                 fontSize: 11,
@@ -139,7 +139,7 @@ function HeroContent() {
             </a>
             <a
               href='#kurse'
-              className='flex-1 text-center font-medium transition-all duration-300 rounded-[var(--radius-md)]'
+              className='sm:flex-1 text-center font-medium transition-all duration-300 rounded-[var(--radius-md)]'
               style={{
                 fontFamily: 'var(--font-body)',
                 fontSize: 11,
