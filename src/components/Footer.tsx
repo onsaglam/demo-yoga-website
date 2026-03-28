@@ -7,19 +7,19 @@ export default function Footer() {
     <footer style={{ background: "#0c110c", borderTop: "1px solid rgba(138,158,126,0.1)" }}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-12 pt-14 sm:pt-20 pb-8 sm:pb-10">
         {/* Top: logo + nav columns */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2.5fr_1fr_1fr_1fr] gap-14 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2.5fr_1fr_1fr_1fr] gap-10 sm:gap-12 lg:gap-14 mb-12 sm:mb-16">
 
           {/* Brand */}
           <div>
             <a href="#" className="inline-flex flex-col mb-6">
-              <span className="font-[family-name:var(--font-display)] text-[32px] font-semibold tracking-[0.15em] uppercase" style={{ color: "var(--cream)" }}>
+              <span className="font-[family-name:var(--font-display)] text-[26px] sm:text-[32px] font-semibold tracking-[0.15em] uppercase" style={{ color: "var(--cream)" }}>
                 Prana
               </span>
               <span className="font-[family-name:var(--font-body)] text-[10px] font-light tracking-[0.4em] uppercase -mt-0.5" style={{ color: "var(--sage)" }}>
                 studio · bremen
               </span>
             </a>
-            <p className="font-[family-name:var(--font-body)] text-[14px] font-light leading-[1.85] mb-8 max-w-[260px]" style={{ color: "rgba(245,240,232,0.4)" }}>
+            <p className="font-[family-name:var(--font-body)] text-[14px] font-light leading-[1.85] mb-8 sm:max-w-[260px]" style={{ color: "rgba(245,240,232,0.4)" }}>
               Im Herzen Bremens – wo Atem, Bewegung und Stille zu einem werden.
             </p>
             {/* Social */}
@@ -92,7 +92,7 @@ export default function Footer() {
           <p className="font-[family-name:var(--font-body)] text-[11px] font-light" style={{ color: "rgba(245,240,232,0.25)" }}>
             © {year} Prana Studio Bremen GmbH · Alle Rechte vorbehalten
           </p>
-          <div className="flex gap-6">
+          <div className="flex gap-4 sm:gap-6">
             {["Impressum","Datenschutz","AGB"].map(l => (
               <a key={l} href="#impressum" className="font-[family-name:var(--font-body)] text-[11px] font-light no-underline transition-colors duration-200" style={{ color: "rgba(245,240,232,0.25)" }}
                 onMouseEnter={e => (e.currentTarget.style.color = "rgba(245,240,232,0.6)")}

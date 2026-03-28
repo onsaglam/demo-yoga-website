@@ -28,7 +28,7 @@ export default function Schedule() {
           </motion.span>
           <motion.h2
             variants={fadeUp}
-            className="font-[family-name:var(--font-display)] text-[clamp(44px,6vw,72px)] font-light leading-[1.1] text-[var(--forest)]"
+            className="font-[family-name:var(--font-display)] text-[clamp(34px,6vw,72px)] font-light leading-[1.1] text-[var(--forest)]"
           >
             Dein{" "}
             <em className="italic text-[var(--sage)]">Stundenplan</em>
@@ -44,7 +44,7 @@ export default function Schedule() {
               onClick={() => setActiveDay(day)}
               className={`
                 font-[family-name:var(--font-body)] text-[11px] font-medium tracking-[0.15em] uppercase
-                px-6 py-3 border rounded-[var(--radius-md)] transition-all duration-250 whitespace-nowrap flex-shrink-0
+                px-4 sm:px-6 py-2.5 sm:py-3 border rounded-[var(--radius-md)] transition-all duration-250 whitespace-nowrap flex-shrink-0
                 ${activeDay === day
                   ? "bg-[var(--sage)] border-[var(--sage)] text-[var(--forest)]"
                   : "bg-transparent border-[var(--forest)]/20 text-[var(--muted)] hover:border-[var(--sage)] hover:text-[var(--forest)]"

@@ -33,7 +33,7 @@ export default function Classes() {
           </motion.span>
           <motion.h2
             variants={fadeUp}
-            className="font-[family-name:var(--font-display)] text-[clamp(44px,6vw,76px)] font-light leading-[1.05] text-[var(--cream)]"
+            className="font-[family-name:var(--font-display)] text-[clamp(34px,6vw,76px)] font-light leading-[1.05] text-[var(--cream)]"
           >
             Für dich gibt es
             <br />

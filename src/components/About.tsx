@@ -17,7 +17,7 @@ export default function About() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
-            className="relative h-[280px] sm:h-[420px] lg:h-[600px]"
+            className="relative h-[240px] sm:h-[420px] lg:h-[600px]"
           >
             {/* Main large image */}
             <div className="absolute top-0 left-0 w-[75%] h-[100%] lg:h-[78%] overflow-hidden rounded-[var(--radius-lg)]" style={{ boxShadow: "0 32px 80px rgba(26,31,26,0.18)" }}>
@@ -64,7 +64,7 @@ export default function About() {
             <motion.h2
               variants={fadeUp}
               className="font-[family-name:var(--font-display)] font-light leading-[1.08] mb-8"
-              style={{ fontSize: "clamp(40px,5vw,60px)", color: "var(--forest)", letterSpacing: "-0.01em" }}
+              style={{ fontSize: "clamp(30px,5vw,60px)", color: "var(--forest)", letterSpacing: "-0.01em" }}
             >
               Bremens neue
               <br />
@@ -95,14 +95,14 @@ export default function About() {
             </motion.div>
 
             {/* Stats row */}
-            <motion.div variants={fadeUp} className="flex gap-8 flex-wrap pt-8" style={{ borderTop: "1px solid rgba(26,31,26,0.12)" }}>
+            <motion.div variants={fadeUp} className="flex gap-6 sm:gap-8 flex-wrap pt-8" style={{ borderTop: "1px solid rgba(26,31,26,0.12)" }}>
               {[
                 { value: "12", label: "Trainer" },
                 { value: "8", label: "Kurstypen" },
                 { value: "5★", label: "Google Bewertung" },
               ].map(s => (
                 <div key={s.label}>
-                  <div className="font-[family-name:var(--font-display)] text-[40px] font-light leading-none" style={{ color: "var(--forest)" }}>{s.value}</div>
+                  <div className="font-[family-name:var(--font-display)] font-light leading-none" style={{ fontSize: "clamp(28px,5vw,40px)", color: "var(--forest)" }}>{s.value}</div>
                   <div className="font-[family-name:var(--font-body)] text-[10px] tracking-[0.22em] uppercase mt-1.5" style={{ color: "var(--muted)" }}>{s.label}</div>
                 </div>
               ))}

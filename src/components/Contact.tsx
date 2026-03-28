@@ -47,7 +47,7 @@ export default function Contact() {
           </motion.span>
           <motion.h2
             variants={fadeUp}
-            className="font-[family-name:var(--font-display)] text-[clamp(44px,6vw,72px)] font-light leading-[1.1] text-[var(--forest)]"
+            className="font-[family-name:var(--font-display)] text-[clamp(34px,6vw,72px)] font-light leading-[1.1] text-[var(--forest)]"
           >
             Dein erster Schritt
             <br />
@@ -163,7 +163,7 @@ export default function Contact() {
             </div>
 
             {/* Social */}
-            <div className="flex gap-5">
+            <div className="flex flex-wrap gap-4 sm:gap-5">
               {[
                 { label: "@pranastudiobremen", icon: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg> },
                 { label: "Prana Studio Bremen", icon: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> },

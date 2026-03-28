@@ -61,7 +61,7 @@ export default function Pricing() {
           <motion.h2
             variants={fadeUp}
             className="font-[family-name:var(--font-display)] font-light leading-[1.1]"
-            style={{ fontSize: "clamp(44px,6vw,72px)", color: "var(--cream)", letterSpacing: "-0.01em" }}
+            style={{ fontSize: "clamp(34px,6vw,72px)", color: "var(--cream)", letterSpacing: "-0.01em" }}
           >
             Transparent,{" "}
             <em className="italic" style={{ color: "var(--sage)" }}>fair & flexibel</em>
@@ -98,13 +98,13 @@ export default function Pricing() {
                 </div>
               )}
 
-              <div className="p-8 flex flex-col flex-1">
+              <div className="p-6 sm:p-8 flex flex-col flex-1">
                 <p className="font-[family-name:var(--font-body)] text-[10px] tracking-[0.25em] uppercase mb-6" style={{ color: "var(--sage)" }}>
                   {plan.name}
                 </p>
 
                 <div className="flex items-end gap-1 mb-2">
-                  <span className="font-[family-name:var(--font-display)] font-light leading-none" style={{ fontSize: 56, color: "var(--cream)" }}>
+                  <span className="font-[family-name:var(--font-display)] font-light leading-none" style={{ fontSize: "clamp(40px,8vw,56px)", color: "var(--cream)" }}>
                     {plan.price}
                   </span>
                   {plan.period && (
@@ -156,7 +156,7 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex items-center justify-center gap-10 mt-14 flex-wrap"
+          className="flex items-center justify-center gap-4 sm:gap-6 lg:gap-10 mt-14 flex-wrap"
         >
           {["Keine versteckten Kosten", "Jederzeit kündbar", "Erste Stunde immer gratis"].map(t => (
             <div key={t} className="flex items-center gap-2">

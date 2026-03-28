@@ -20,7 +20,7 @@ export default function Instructors() {
             <motion.h2
               variants={fadeUp}
               className="font-[family-name:var(--font-display)] font-light leading-[1.1]"
-              style={{ fontSize: "clamp(44px,6vw,72px)", color: "var(--cream)", letterSpacing: "-0.01em" }}
+              style={{ fontSize: "clamp(34px,6vw,72px)", color: "var(--cream)", letterSpacing: "-0.01em" }}
             >
               Mit Leidenschaft
               <br />
@@ -52,7 +52,7 @@ export default function Instructors() {
               style={{ background: "rgba(26,31,26,0.6)", border: "1px solid rgba(138,158,126,0.1)" }}
             >
               {/* Photo */}
-              <div className="relative h-[280px] overflow-hidden">
+              <div className="relative h-[240px] sm:h-[280px] overflow-hidden">
                 <Image
                   src={instructor.imageUrl}
                   alt={`${instructor.name}, ${instructor.title}`}

@@ -13,7 +13,7 @@ export default function Impressum() {
       aria-label="Impressum"
       className="bg-[var(--forest)] border-t border-[var(--sage-15)]"
     >
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-12 py-10">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-12 py-10">
         <button
           onClick={() => setOpen(!open)}
           aria-expanded={open}
@@ -40,7 +40,7 @@ export default function Impressum() {
               transition={{ duration: 0.4, ease: EASE_OUT_QUINT }}
               className="overflow-hidden"
             >
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-10 pb-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 pt-10 pb-4">
                 {/* Impressum */}
                 <div>
                   <h3 className="font-[family-name:var(--font-display)] text-[22px] font-[400] text-[var(--cream)] mb-5">

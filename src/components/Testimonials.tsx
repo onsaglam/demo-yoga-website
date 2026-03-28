@@ -7,13 +7,13 @@ import { testimonials, type Testimonial } from "@/data/testimonials";
 
 function TestimonialCard({ t }: { t: Testimonial }) {
   return (
-    <div className="min-w-[300px] md:min-w-[320px] bg-[rgba(36,41,36,0.6)] border border-[var(--sage-15)] rounded-[var(--radius-md)] px-7 py-7 mr-4 flex-shrink-0">
+    <div className="min-w-[270px] sm:min-w-[300px] md:min-w-[320px] bg-[rgba(36,41,36,0.6)] border border-[var(--sage-15)] rounded-[var(--radius-md)] px-5 sm:px-7 py-6 sm:py-7 mr-4 flex-shrink-0">
       <div className="flex gap-0.5 mb-4" aria-label={`${t.stars} von 5 Sternen`}>
         {Array.from({ length: t.stars }).map((_, i) => (
           <span key={i} className="text-[var(--gold)] text-[14px]" aria-hidden="true">★</span>
         ))}
       </div>
-      <blockquote className="font-[family-name:var(--font-display)] text-[18px] font-light italic leading-[1.6] text-[var(--cream-70)] mb-5">
+      <blockquote className="font-[family-name:var(--font-display)] text-[16px] sm:text-[18px] font-light italic leading-[1.6] text-[var(--cream-70)] mb-5">
         &ldquo;{t.text}&rdquo;
       </blockquote>
       <div>
@@ -44,7 +44,7 @@ export default function Testimonials() {
           </motion.span>
           <motion.h2
             variants={fadeUp}
-            className="font-[family-name:var(--font-display)] text-[clamp(44px,6vw,72px)] font-light leading-[1.1] text-[var(--cream)]"
+            className="font-[family-name:var(--font-display)] text-[clamp(34px,6vw,72px)] font-light leading-[1.1] text-[var(--cream)]"
           >
             Was unsere
             <br />
