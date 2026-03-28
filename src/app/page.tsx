@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import VideoReveal from "@/components/VideoReveal";
 import About from "@/components/About";
 import Classes from "@/components/Classes";
 import { PranaIntro } from "@/components/PranaIntro";
@@ -48,6 +49,7 @@ export default function HomePage() {
       <Navbar />
       <main id="main-content">
         <Hero />
+        <VideoReveal />
         <About />
         <Classes />
         <VideoBreak />
