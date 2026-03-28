@@ -1,0 +1,173 @@
+"use client";
+
+import { useScroll, useTransform, motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { EASE_IN_OUT } from "@/lib/motion";
+
+const links = [
+  { label: "Über uns", href: "#ueber-uns" },
+  { label: "Kurse", href: "#kurse" },
+  { label: "Trainer", href: "#trainer" },
+  { label: "Stundenplan", href: "#stundenplan" },
+  { label: "Preise", href: "#preise" },
+  { label: "Kontakt", href: "#kontakt" },
+];
+
+function LotusIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <path d="M20 32 C20 32, 8 24, 8 14 C8 14, 14 18, 20 18 C26 18, 32 14, 32 14 C32 24, 20 32, 20 32Z" stroke="var(--gold)" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M20 18 C20 18, 10 12, 10 6 C10 6, 15 10, 20 10 C25 10, 30 6, 30 6 C30 12, 20 18, 20 18Z" stroke="var(--sage)" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+      <line x1="20" y1="10" x2="20" y2="32" stroke="var(--sage)" strokeWidth="1" opacity="0.5" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
+export default function Navbar() {
+  const { scrollY } = useScroll();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const background = useTransform(
+    scrollY,
+    [0, 80],
+    ["rgba(26,31,26,0)", "rgba(20,25,20,0.97)"]
+  );
+  const backdropBlur = useTransform(scrollY, [0, 80], ["blur(0px)", "blur(20px)"]);
+  const height = useTransform(scrollY, [0, 80], ["84px", "66px"]);
+  const borderOpacity = useTransform(scrollY, [0, 80], [0, 0.2]);
+  const bottomShadowOpacity = useTransform(scrollY, [0, 80], [0, 1]);
+
+  return (
+    <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[var(--gold)] focus:text-[var(--forest)] focus:rounded-[var(--radius-md)] focus:text-[11px] focus:font-medium focus:tracking-[0.1em] focus:uppercase"
+      >
+        Zum Hauptinhalt springen
+      </a>
+
+      <motion.nav
+        aria-label="Hauptnavigation"
+        style={{ background, backdropFilter: backdropBlur }}
+        className="fixed top-0 left-0 right-0 z-[500]"
+      >
+        {/* Top gold accent line */}
+        <motion.div
+          style={{
+            background: "linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.6) 30%, rgba(201,168,76,0.6) 70%, transparent 100%)",
+            opacity: bottomShadowOpacity,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: "1px",
+          }}
+        />
+
+        <motion.div
+          style={{ height, borderBottom: `1px solid rgba(138,158,126,${borderOpacity})` }}
+          className="max-w-[1280px] mx-auto px-6 lg:px-14 flex items-center justify-between"
+        >
+          {/* Logo */}
+          <a href="#" className="flex items-center gap-3 group" aria-label="Prana Studio Bremen – Startseite">
+            <LotusIcon />
+            <div className="flex flex-col leading-none">
+              <span className="font-[family-name:var(--font-display)] text-[30px] font-semibold tracking-[0.18em] text-[var(--cream)] uppercase transition-colors duration-300 group-hover:text-[var(--gold)]">
+                Prana
+              </span>
+              <span className="font-[family-name:var(--font-body)] text-[9px] font-light tracking-[0.45em] text-[var(--sage)] uppercase -mt-0.5">
+                studio
+              </span>
+            </div>
+          </a>
+
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-8">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="relative font-[family-name:var(--font-body)] text-[11px] tracking-[0.18em] text-[var(--cream)] uppercase opacity-60 hover:opacity-100 transition-all duration-300 group"
+              >
+                {link.label}
+                <span className="absolute -bottom-1 left-0 right-0 h-px bg-[var(--gold)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              </a>
+            ))}
+            <a
+              href="#kontakt"
+              className="font-[family-name:var(--font-body)] text-[11px] tracking-[0.15em] uppercase px-6 py-3 transition-all duration-300 rounded-[var(--radius-md)]"
+              style={{
+                background: "linear-gradient(135deg, var(--gold) 0%, #e4b84a 100%)",
+                color: "var(--forest)",
+                fontWeight: 600,
+                boxShadow: "0 2px 16px rgba(201,168,76,0.25)",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 24px rgba(201,168,76,0.4)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 16px rgba(201,168,76,0.25)";
+              }}
+            >
+              Gratis Probestunde
+            </a>
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden text-[var(--cream)] p-2"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </motion.div>
+      </motion.nav>
+
+      {/* Mobile menu overlay */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: EASE_IN_OUT }}
+            className="fixed inset-0 z-[400] flex flex-col items-center justify-center gap-10 bg-[rgba(20,25,20,0.99)]"
+          >
+            <div className="absolute top-6 left-1/2 -translate-x-1/2 opacity-20">
+              <LotusIcon />
+            </div>
+            {links.map((link, i) => (
+              <motion.a
+                key={link.href}
+                href={link.href}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.07, duration: 0.4 }}
+                onClick={() => setMenuOpen(false)}
+                className="font-[family-name:var(--font-display)] text-[40px] font-light text-[var(--cream)] no-underline tracking-[0.05em] hover:text-[var(--gold)] transition-colors duration-200"
+              >
+                {link.label}
+              </motion.a>
+            ))}
+            <motion.a
+              href="#kontakt"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: links.length * 0.07 + 0.1, duration: 0.4 }}
+              onClick={() => setMenuOpen(false)}
+              className="font-[family-name:var(--font-body)] text-[11px] tracking-[0.2em] uppercase px-10 py-4 rounded-[var(--radius-md)] mt-4 no-underline font-semibold"
+              style={{ background: "var(--gold)", color: "var(--forest)" }}
+            >
+              Gratis Probestunde
+            </motion.a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
