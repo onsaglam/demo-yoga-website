@@ -31,12 +31,12 @@ export default function Navbar() {
   const background = useTransform(
     scrollY,
     [0, 80],
-    ["rgba(26,31,26,0)", "rgba(20,25,20,0.97)"]
+    ["rgba(13,17,13,0.78)", "rgba(13,17,13,0.98)"]
   );
-  const backdropBlur = useTransform(scrollY, [0, 80], ["blur(0px)", "blur(20px)"]);
-  const height = useTransform(scrollY, [0, 80], ["84px", "66px"]);
-  const borderOpacity = useTransform(scrollY, [0, 80], [0, 0.2]);
-  const bottomShadowOpacity = useTransform(scrollY, [0, 80], [0, 1]);
+  const backdropBlur = useTransform(scrollY, [0, 80], ["blur(8px)", "blur(20px)"]);
+  const height = useTransform(scrollY, [0, 80], ["72px", "62px"]);
+  const borderOpacity = useTransform(scrollY, [0, 80], [0.08, 0.22]);
+  const bottomShadowOpacity = useTransform(scrollY, [0, 80], [0.4, 1]);
   const progressScaleX = scrollYProgress;
 
   return (
@@ -59,7 +59,7 @@ export default function Navbar() {
           right: 0,
           height: "2px",
           background: "linear-gradient(90deg, var(--sage), var(--gold))",
-          zIndex: 600,
+          zIndex: 700,
         }}
       />
 
@@ -104,7 +104,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="relative font-[family-name:var(--font-body)] text-[11px] tracking-[0.18em] text-[var(--cream)] uppercase opacity-60 hover:opacity-100 transition-all duration-300 group"
+                className="relative font-[family-name:var(--font-body)] text-[11px] tracking-[0.18em] text-[var(--cream)] uppercase opacity-85 hover:opacity-100 transition-all duration-300 group"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 right-0 h-px bg-[var(--gold)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
@@ -144,7 +144,7 @@ export default function Navbar() {
         </motion.div>
       </motion.nav>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile menu overlay — z-[550] covers nav bar (z-500) fully */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -152,8 +152,8 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.35, ease: EASE_IN_OUT }}
-            className="fixed inset-0 z-[400] flex flex-col"
-            style={{ background: "rgba(13,17,13,0.98)", backdropFilter: "blur(12px)" }}
+            className="fixed inset-0 z-[550] flex flex-col"
+            style={{ background: "rgba(10,14,10,0.99)", backdropFilter: "blur(16px)" }}
           >
             {/* Overlay header */}
             <div
@@ -199,7 +199,7 @@ export default function Navbar() {
                   className="flex items-center justify-between py-4 no-underline group"
                   style={{ borderBottom: "1px solid rgba(138,158,126,0.08)" }}
                 >
-                  <span className="font-[family-name:var(--font-display)] text-[38px] font-light text-[var(--cream)] tracking-[0.03em] group-hover:text-[var(--gold)] transition-colors duration-200">
+                  <span className="font-[family-name:var(--font-display)] text-[28px] xs:text-[32px] sm:text-[38px] font-light text-[var(--cream)] tracking-[0.03em] group-hover:text-[var(--gold)] transition-colors duration-200">
                     {link.label}
                   </span>
                   <span className="font-[family-name:var(--font-body)] text-[11px] tracking-[0.25em] opacity-30" style={{ color: "var(--sage)" }}>
