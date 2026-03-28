@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { CardContainer, CardItem } from "@/components/ui/ThreeDCard";
 import { fadeUp, EASE_OUT_QUINT } from "@/lib/motion";
 import { yogaClasses } from "@/data/classes";
 
@@ -47,140 +48,145 @@ export default function Classes() {
           </motion.div>
         </AnimatedSection>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {yogaClasses.map((cls, i) => (
-            <motion.div
-              key={cls.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.8, delay: (i % 3) * 0.12, ease: EASE_OUT_QUINT }}
-              whileHover="hover"
-              className="relative h-[380px] sm:h-[440px] lg:h-[500px] overflow-hidden cursor-pointer group"
-              style={{ borderRadius: "12px" }}
-            >
-              {/* Image */}
-              <Image
-                src={cls.imageUrl}
-                alt={`${cls.name} Kurs in Prana Studio Bremen`}
-                fill
-                className="object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-110"
-                unoptimized
-              />
+        {/* 3D Card Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {yogaClasses.map((cls, i) => {
+            const isSage = cls.accentColor === "sage";
+            const accentColor = isSage ? "var(--sage)" : "var(--gold)";
+            const accentRgba = isSage ? "rgba(138,158,126,0.5)" : "rgba(201,168,76,0.5)";
+            const accentBg = isSage ? "rgba(138,158,126,0.15)" : "rgba(201,168,76,0.12)";
+            const accentBorder = isSage ? "rgba(138,158,126,0.4)" : "rgba(201,168,76,0.35)";
 
-              {/* Base color grade for vibrancy */}
-              <div
-                className="absolute inset-0 mix-blend-color opacity-20 transition-opacity duration-500 group-hover:opacity-10"
-                style={{
-                  background: cls.accentColor === "sage"
-                    ? "linear-gradient(135deg, #4a6741 0%, #2d5a27 100%)"
-                    : "linear-gradient(135deg, #8a6428 0%, #b8860b 100%)"
-                }}
-              />
-
-              {/* Default gradient overlay */}
+            return (
               <motion.div
-                variants={{ rest: { opacity: 1 }, hover: { opacity: 0 } }}
-                initial="rest"
-                className="absolute inset-0"
-                style={{
-                  background: "linear-gradient(to top, rgba(10,14,10,0.92) 0%, rgba(10,14,10,0.4) 50%, rgba(10,14,10,0.08) 100%)"
-                }}
-              />
-
-              {/* Hover overlay */}
-              <motion.div
-                variants={{ rest: { opacity: 0 }, hover: { opacity: 1 } }}
-                initial="rest"
-                className="absolute inset-0"
-                style={{
-                  background: "linear-gradient(to top, rgba(10,14,10,0.97) 0%, rgba(10,14,10,0.75) 50%, rgba(10,14,10,0.3) 100%)"
-                }}
-              />
-
-              {/* Accent glow at bottom on hover */}
-              <motion.div
-                variants={{ rest: { opacity: 0, scaleX: 0.6 }, hover: { opacity: 1, scaleX: 1 } }}
-                initial="rest"
-                transition={{ duration: 0.4 }}
-                className="absolute bottom-0 left-0 right-0 h-[2px]"
-                style={{
-                  background: cls.accentColor === "sage"
-                    ? "linear-gradient(90deg, transparent, var(--sage), transparent)"
-                    : "linear-gradient(90deg, transparent, var(--gold), transparent)"
-                }}
-              />
-
-              {/* Hover info panel */}
-              <motion.div
-                variants={{ rest: { opacity: 0, y: 20 }, hover: { opacity: 1, y: 0 } }}
-                initial="rest"
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="absolute inset-0 flex flex-col justify-end p-8"
+                key={cls.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.8, delay: (i % 3) * 0.12, ease: EASE_OUT_QUINT }}
               >
-                <p
-                  className="font-[family-name:var(--font-body)] text-[10px] tracking-[0.35em] uppercase mb-3"
-                  style={{ color: cls.accentColor === "sage" ? "var(--sage)" : "var(--gold)" }}
+                <CardContainer
+                  containerClassName="h-[400px] sm:h-[450px] lg:h-[500px] cursor-pointer group"
+                  className="relative w-full h-full rounded-[14px]"
                 >
-                  {cls.type}
-                </p>
-                <h3 className="font-[family-name:var(--font-display)] text-[36px] font-light text-[var(--cream)] mb-4 leading-[1]">
-                  {cls.name}
-                </h3>
-                <p className="font-[family-name:var(--font-body)] text-[13.5px] font-light leading-[1.7] mb-6" style={{ color: "rgba(245,240,232,0.72)" }}>
-                  {cls.description}
-                </p>
-                <div className="flex items-center gap-3 flex-wrap">
-                  <span
-                    className="font-[family-name:var(--font-body)] text-[10px] px-3.5 py-1.5 rounded-full tracking-[0.12em] uppercase"
+                  {/* Image + gradient — clipped at card bounds */}
+                  <div className="absolute inset-0 rounded-[14px] overflow-hidden">
+                    <Image
+                      src={cls.imageUrl}
+                      alt={`${cls.name} Kurs in Prana Studio Bremen`}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      unoptimized
+                    />
+                    {/* Base gradient */}
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background:
+                          "linear-gradient(to top, rgba(8,12,8,0.97) 0%, rgba(8,12,8,0.6) 50%, rgba(8,12,8,0.1) 100%)",
+                      }}
+                    />
+                    {/* Subtle color wash from accent */}
+                    <div
+                      className="absolute inset-0 opacity-15 mix-blend-color"
+                      style={{
+                        background: isSage
+                          ? "linear-gradient(135deg, #4a6741, #2d5a27)"
+                          : "linear-gradient(135deg, #8a6428, #b8860b)",
+                      }}
+                    />
+                  </div>
+
+                  {/* Default border */}
+                  <div
+                    className="absolute inset-0 rounded-[14px]"
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(138,158,126,0.12)" }}
+                  />
+
+                  {/* Hover glow border */}
+                  <div
+                    className="absolute inset-0 rounded-[14px] opacity-0 group-hover:opacity-100 transition-opacity duration-400"
                     style={{
-                      background: cls.accentColor === "sage" ? "rgba(138,158,126,0.15)" : "rgba(201,168,76,0.12)",
-                      border: `1px solid ${cls.accentColor === "sage" ? "rgba(138,158,126,0.4)" : "rgba(201,168,76,0.35)"}`,
-                      color: cls.accentColor === "sage" ? "var(--sage)" : "var(--gold)",
+                      boxShadow: `inset 0 0 0 1px ${accentRgba}, 0 8px 40px rgba(0,0,0,0.4)`,
+                    }}
+                  />
+
+                  {/* Content — floats above the background in 3D space */}
+                  <CardItem
+                    translateZ={50}
+                    className="absolute bottom-0 left-0 right-0 px-5 sm:px-6 pb-5 sm:pb-6 pt-24"
+                  >
+                    {/* Type label */}
+                    <p
+                      className="font-[family-name:var(--font-body)] text-[9px] tracking-[0.35em] uppercase mb-2"
+                      style={{ color: accentColor }}
+                    >
+                      {cls.type}
+                    </p>
+
+                    {/* Class name */}
+                    <h3 className="font-[family-name:var(--font-display)] text-[clamp(22px,3vw,30px)] font-light text-[var(--cream)] leading-tight mb-3">
+                      {cls.name}
+                    </h3>
+
+                    {/* Description */}
+                    <p
+                      className="font-[family-name:var(--font-body)] text-[13px] font-light leading-[1.65] mb-5 line-clamp-2"
+                      style={{ color: "rgba(245,240,232,0.62)" }}
+                    >
+                      {cls.description}
+                    </p>
+
+                    {/* Badges + CTA */}
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span
+                        className="font-[family-name:var(--font-body)] text-[9px] px-3 py-1.5 rounded-full tracking-[0.12em] uppercase"
+                        style={{
+                          background: accentBg,
+                          border: `1px solid ${accentBorder}`,
+                          color: accentColor,
+                        }}
+                      >
+                        {LEVEL_ICONS[cls.level]} {cls.level}
+                      </span>
+                      <span
+                        className="font-[family-name:var(--font-body)] text-[9px] px-3 py-1.5 rounded-full tracking-[0.12em]"
+                        style={{
+                          background: "rgba(245,240,232,0.08)",
+                          color: "rgba(245,240,232,0.55)",
+                        }}
+                      >
+                        {cls.duration} Min
+                      </span>
+                      <a
+                        href="#kontakt"
+                        className="ml-auto font-[family-name:var(--font-body)] text-[9px] tracking-[0.15em] uppercase px-4 py-1.5 rounded-full transition-all duration-200 no-underline font-semibold"
+                        style={{
+                          background: accentColor,
+                          color: "var(--forest)",
+                        }}
+                      >
+                        Buchen →
+                      </a>
+                    </div>
+                  </CardItem>
+
+                  {/* Accent line — highest Z layer */}
+                  <CardItem
+                    translateZ={70}
+                    className="absolute bottom-0 left-5 right-5 h-[1.5px] rounded-full"
+                    style={{
+                      background: isSage
+                        ? "linear-gradient(90deg, transparent, var(--sage), transparent)"
+                        : "linear-gradient(90deg, transparent, var(--gold), transparent)",
                     }}
                   >
-                    {LEVEL_ICONS[cls.level]} {cls.level}
-                  </span>
-                  <span
-                    className="font-[family-name:var(--font-body)] text-[10px] px-3.5 py-1.5 rounded-full tracking-[0.12em]"
-                    style={{ background: "rgba(245,240,232,0.08)", color: "rgba(245,240,232,0.6)" }}
-                  >
-                    {cls.duration} Min
-                  </span>
-                  <a
-                    href="#kontakt"
-                    className="ml-auto font-[family-name:var(--font-body)] text-[10px] tracking-[0.15em] uppercase px-4 py-1.5 rounded-full transition-all duration-200"
-                    style={{ background: cls.accentColor === "sage" ? "var(--sage)" : "var(--gold)", color: "var(--forest)", fontWeight: 600 }}
-                  >
-                    Buchen
-                  </a>
-                </div>
+                    <span />
+                  </CardItem>
+                </CardContainer>
               </motion.div>
-
-              {/* Default label (visible by default, hides on hover on desktop) */}
-              <motion.div
-                variants={{ rest: { opacity: 1, y: 0 }, hover: { opacity: 0, y: 8 } }}
-                initial="rest"
-                transition={{ duration: 0.3 }}
-                className="absolute bottom-0 left-0 right-0 px-5 sm:px-7 pb-6 sm:pb-8 pt-20 bg-gradient-to-t from-[rgba(10,14,10,0.95)] to-transparent"
-              >
-                <p
-                  className="font-[family-name:var(--font-body)] text-[10px] tracking-[0.35em] uppercase mb-2"
-                  style={{ color: cls.accentColor === "sage" ? "var(--sage)" : "var(--gold)" }}
-                >
-                  {cls.type}
-                </p>
-                <h3 className="font-[family-name:var(--font-display)] text-[24px] sm:text-[28px] font-light text-[var(--cream)] leading-tight">
-                  {cls.name}
-                </h3>
-                {/* Short description visible on mobile always */}
-                <p className="sm:hidden font-[family-name:var(--font-body)] text-[12px] font-light leading-[1.6] mt-2" style={{ color: "rgba(245,240,232,0.6)" }}>
-                  {cls.duration} Min · {cls.level}
-                </p>
-              </motion.div>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Bottom CTA */}
@@ -199,7 +205,7 @@ export default function Classes() {
             onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--sage)")}
           >
             Alle Kurszeiten im Stundenplan
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </a>
         </motion.div>
       </div>
