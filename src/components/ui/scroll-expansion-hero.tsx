@@ -39,6 +39,7 @@ const ScrollExpandMedia = ({
   const [mediaFullyExpanded, setMediaFullyExpanded] = useState<boolean>(false);
   const [touchStartY, setTouchStartY] = useState<number>(0);
   const [isMobileState, setIsMobileState] = useState<boolean>(false);
+  const [skipAnimation, setSkipAnimation] = useState<boolean>(false);
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
@@ -50,6 +51,7 @@ const ScrollExpandMedia = ({
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
+      if (skipAnimation) return;
       if (mediaFullyExpanded && e.deltaY < 0 && window.scrollY <= 5) {
         setMediaFullyExpanded(false);
         e.preventDefault();
@@ -72,11 +74,12 @@ const ScrollExpandMedia = ({
     };
 
     const handleTouchStart = (e: TouchEvent) => {
+      if (skipAnimation) return;
       setTouchStartY(e.touches[0].clientY);
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      if (!touchStartY) return;
+      if (skipAnimation || !touchStartY) return;
 
       const touchY = e.touches[0].clientY;
       const deltaY = touchStartY - touchY;
@@ -110,7 +113,7 @@ const ScrollExpandMedia = ({
     };
 
     const handleScroll = (): void => {
-      if (!mediaFullyExpanded) {
+      if (!skipAnimation && !mediaFullyExpanded) {
         window.scrollTo(0, 0);
       }
     };
@@ -147,11 +150,18 @@ const ScrollExpandMedia = ({
       );
       window.removeEventListener('touchend', handleTouchEnd as EventListener);
     };
-  }, [scrollProgress, mediaFullyExpanded, touchStartY]);
+  }, [scrollProgress, mediaFullyExpanded, touchStartY, skipAnimation]);
 
   useEffect(() => {
     const checkIfMobile = (): void => {
-      setIsMobileState(window.innerWidth < 768);
+      const mobile = window.innerWidth < 768;
+      setIsMobileState(mobile);
+      if (mobile) {
+        setSkipAnimation(true);
+        setScrollProgress(1);
+        setShowContent(true);
+        setMediaFullyExpanded(true);
+      }
     };
 
     checkIfMobile();
@@ -172,7 +182,7 @@ const ScrollExpandMedia = ({
       ref={sectionRef}
       className='transition-colors duration-700 ease-in-out overflow-x-hidden'
     >
-      <section className='relative flex flex-col items-center justify-start min-h-[100dvh]'>
+      <section className='relative flex flex-col items-center justify-start min-h-[100dvh]' style={{ paddingTop: skipAnimation ? 72 : 0 }}>
         <div className='relative w-full flex flex-col items-center min-h-[100dvh]'>
           <motion.div
             className='absolute inset-0 z-0 h-full'
@@ -348,10 +358,10 @@ const ScrollExpandMedia = ({
             </div>
 
             <motion.section
-              className='flex flex-col w-full px-8 py-10 md:px-16 lg:py-20'
+              className='flex flex-col w-full px-4 sm:px-8 py-8 sm:py-10 md:px-16 lg:py-20'
               initial={{ opacity: 0 }}
               animate={{ opacity: showContent ? 1 : 0 }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: skipAnimation ? 0 : 0.7 }}
             >
               {children}
             </motion.section>
