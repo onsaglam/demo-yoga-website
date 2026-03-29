@@ -52,7 +52,7 @@ export default function FalImageBreak() {
   return (
     <section
       className="relative overflow-hidden"
-      style={{ height: "60vh", minHeight: 420 }}
+      style={{ height: "85vh", minHeight: 520 }}
       aria-label="Yoga Philosophie"
     >
       {/* Image with overlay */}
