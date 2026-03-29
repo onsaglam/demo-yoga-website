@@ -1,12 +1,13 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EASE_IN_OUT, EASE_OUT_QUINT } from "@/lib/motion";
 
 export function LogoIntro() {
   const [done, setDone] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const canDismiss = useRef(false);
 
   useEffect(() => {
     setMounted(true);
@@ -14,11 +15,26 @@ export function LogoIntro() {
       setDone(true);
       return;
     }
-    const t = setTimeout(() => {
+
+    const dismiss = () => {
       setDone(true);
       sessionStorage.setItem("prana-intro", "1");
-    }, 2600);
-    return () => clearTimeout(t);
+    };
+
+    // After 5s the intro can be dismissed by mouse move
+    const readTimer = setTimeout(() => { canDismiss.current = true; }, 5000);
+
+    // Fallback: auto-dismiss at 9s if user never moves mouse
+    const fallback = setTimeout(dismiss, 9000);
+
+    const onMove = () => { if (canDismiss.current) dismiss(); };
+    window.addEventListener("mousemove", onMove);
+
+    return () => {
+      clearTimeout(readTimer);
+      clearTimeout(fallback);
+      window.removeEventListener("mousemove", onMove);
+    };
   }, []);
 
   if (!mounted) return null;
@@ -77,7 +93,7 @@ export function LogoIntro() {
             style={{ background: "var(--gold)" }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
-            transition={{ duration: 2.4, ease: [0.4, 0, 0.6, 1] }}
+            transition={{ duration: 5.0, ease: [0.4, 0, 0.6, 1] }}
           />
         </motion.div>
       )}

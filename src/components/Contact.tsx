@@ -14,7 +14,7 @@ interface ContactInfo {
 }
 
 const contactInfo: ContactInfo[] = [
-  { icon: <MapPin size={18} aria-hidden="true" />, title: "Adresse", content: "Ostertorsteinweg 42\n28203 Bremen" },
+  { icon: <MapPin size={18} aria-hidden="true" />, title: "Adresse", content: "28203 Bremen" },
   { icon: <Phone size={18} aria-hidden="true" />, title: "Telefon", content: "+49 421 000 0000" },
   { icon: <Mail size={18} aria-hidden="true" />, title: "E-Mail", content: "info@pranastudio-bremen.de" },
   { icon: <Clock size={18} aria-hidden="true" />, title: "Öffnungszeiten", content: "Mo–Fr: 06:30 – 21:00 Uhr\nSa–So: 08:00 – 18:00 Uhr" },

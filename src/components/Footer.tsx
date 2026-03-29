@@ -75,7 +75,7 @@ export default function Footer() {
           <div>
             <h4 className="font-[family-name:var(--font-body)] text-[10px] tracking-[0.3em] uppercase mb-6" style={{ color: "var(--sage)" }}>Kontakt</h4>
             <address className="not-italic flex flex-col gap-3">
-              {["Ostertorsteinweg 42","28203 Bremen","","Mo–Fr  06:30 – 21:00","Sa–So  08:00 – 18:00","","+49 421 000 0000","info@pranastudio-bremen.de"].map((line, i) =>
+              {["28203 Bremen","","Mo–Fr  06:30 – 21:00","Sa–So  08:00 – 18:00","","+49 421 000 0000","info@pranastudio-bremen.de"].map((line, i) =>
                 line === "" ? <span key={i} className="h-1" /> : (
                   <span key={i} className="font-[family-name:var(--font-body)] text-[13px] font-light" style={{ color: "rgba(245,240,232,0.45)" }}>{line}</span>
                 )

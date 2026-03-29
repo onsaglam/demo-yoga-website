@@ -48,7 +48,6 @@ export default function Impressum() {
                   </h3>
                   <div className="font-[family-name:var(--font-body)] text-[13px] font-light leading-[1.9] text-[var(--cream-70)] space-y-1">
                     <p className="font-medium text-[var(--cream)]">Prana Studio Bremen GmbH</p>
-                    <p>Ostertorsteinweg 42</p>
                     <p>28203 Bremen</p>
                     <br />
                     <p className="font-medium text-[var(--cream)]">Geschäftsführerin:</p>
