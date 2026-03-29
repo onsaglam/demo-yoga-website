@@ -4,7 +4,6 @@ import Hero from "@/components/Hero";
 import VideoReveal from "@/components/VideoReveal";
 import About from "@/components/About";
 import Classes from "@/components/Classes";
-import { PranaIntro } from "@/components/PranaIntro";
 
 const VideoBreak = dynamic(() => import("@/components/VideoBreak"));
 const FalImageBreak = dynamic(() => import("@/components/FalImageBreak"));
@@ -45,7 +44,6 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <PranaIntro />
       <Navbar />
       <main id="main-content">
         <Hero />

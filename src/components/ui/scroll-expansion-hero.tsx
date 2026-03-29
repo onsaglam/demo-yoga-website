@@ -16,6 +16,7 @@ interface ScrollExpandMediaProps {
   mediaSrc: string;
   posterSrc?: string;
   bgImageSrc: string;
+  bgVideoSrc?: string;
   title?: string;
   date?: string;
   scrollToExpand?: string;
@@ -28,6 +29,7 @@ const ScrollExpandMedia = ({
   mediaSrc,
   posterSrc,
   bgImageSrc,
+  bgVideoSrc,
   title,
   date,
   scrollToExpand,
@@ -190,19 +192,34 @@ const ScrollExpandMedia = ({
             animate={{ opacity: 1 - scrollProgress }}
             transition={{ duration: 0.1 }}
           >
-            <Image
-              src={bgImageSrc}
-              alt='Background'
-              width={1920}
-              height={1080}
-              className='w-screen h-screen'
-              style={{
-                objectFit: 'cover',
-                objectPosition: 'center',
-              }}
-              priority
-              unoptimized
-            />
+            {bgVideoSrc ? (
+              <video
+                src={bgVideoSrc}
+                poster={bgImageSrc}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload='auto'
+                className='w-screen h-screen object-cover'
+                disablePictureInPicture
+                disableRemotePlayback
+              />
+            ) : (
+              <Image
+                src={bgImageSrc}
+                alt='Background'
+                width={1920}
+                height={1080}
+                className='w-screen h-screen'
+                style={{
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
+                priority
+                unoptimized
+              />
+            )}
             <div className='absolute inset-0 bg-black/10' />
           </motion.div>
 

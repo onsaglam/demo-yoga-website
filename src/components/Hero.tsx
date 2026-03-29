@@ -203,6 +203,7 @@ export default function Hero() {
         mediaType='video'
         mediaSrc={VIDEO_URL}
         bgImageSrc={BG_IMAGE}
+        bgVideoSrc={VIDEO_URL}
         title='Prana Studio'
         date='Bremen · Deutschland'
         scrollToExpand='Nach unten scrollen'
