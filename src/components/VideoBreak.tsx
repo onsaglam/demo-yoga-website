@@ -3,9 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const VIDEO_URL =
-  process.env.NEXT_PUBLIC_HERO_VIDEO_URL ||
-  "https://v3b.fal.media/files/b/0a93e5aa/Eicud9cmZ1nTtXvq77iD9_output.mp4";
+const VIDEO_URL = "https://v3b.fal.media/files/b/0a942af5/lEu89bmGpoXjRI_fieRcV_output.mp4";
 
 export default function VideoBreak() {
   const ref = useRef<HTMLDivElement>(null);
